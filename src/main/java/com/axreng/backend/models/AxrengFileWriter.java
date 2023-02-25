@@ -1,33 +1,44 @@
 package com.axreng.backend.models;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Set;
+import java.util.List;
 
 public class AxrengFileWriter {
 
-    public void createNewFile(String baseUrl, String keyword, Set<String> urlsFound) {
+    public void createNewFile(String baseUrl, String keyword, List<String> urlsFound) {
+        int counter = 0;
+        while (true) {
+            try {
+                String filename = counter > 0 ? "results_" + keyword + "_(" + counter + ").txt" : "results_" + keyword + ".txt";
 
-        try {
-            //TODO checar se arquivo existe e criar copia: results_keyword_02.txt
-            FileWriter file = new FileWriter("results_" + keyword + ".txt");
-
-            file.write("Search starting with base URL '" + baseUrl + "' and keyword '" + keyword + "'" + System.lineSeparator());
-
-            urlsFound.forEach(url -> {
-                try {
-                    file.write("Result found: " + url + System.lineSeparator());
-                } catch (IOException e) {
-                    System.out.println("Error during file write: " + e.getMessage());
+                File file = new File(filename);
+                if (file.exists()) {
+                    counter++;
+                    continue;
                 }
-            });
 
-            file.write("Search finished with " + urlsFound.size() + " results found");
+                FileWriter newFile = new FileWriter(filename);
 
-            file.close();
-            System.out.println("Successfully wrote to the file." + System.lineSeparator());
-        } catch (IOException e) {
-            System.out.println("An error occurred: " + e.getMessage());
+                newFile.write("Search starting with base URL '" + baseUrl + "' and keyword '" + keyword + "'" + System.lineSeparator());
+
+                urlsFound.forEach(url -> {
+                    try {
+                        newFile.write("Result found: " + url + System.lineSeparator());
+                    } catch (IOException e) {
+                        System.out.println("Error during file write: " + e.getMessage());
+                    }
+                });
+
+                newFile.write("Search finished with " + urlsFound.size() + " results found");
+
+                newFile.close();
+                System.out.println("Successfully wrote to the file." + System.lineSeparator());
+            } catch (IOException e) {
+                System.out.println("An error occurred: " + e.getMessage());
+            }
+            return;
         }
     }
 }
