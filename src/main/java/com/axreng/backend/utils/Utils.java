@@ -14,4 +14,18 @@ public class Utils {
         }
         return true;
     }
+
+    public static void waitFinish() {
+        while (true) {
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            if(SharedLists.pagesToVisit.iterator().hasNext() && Thread.activeCount() > 1) {
+                continue;
+            }
+            return;
+        }
+    }
 }

@@ -1,16 +1,20 @@
 package com.axreng.backend.controllers;
 
+import com.axreng.backend.models.AxrengFileWriter;
 import com.axreng.backend.models.WebCrawlerObserver;
 import com.axreng.backend.utils.NotifyUtils;
+import com.axreng.backend.utils.SharedLists;
+import com.axreng.backend.utils.Utils;
 
 import java.util.concurrent.*;
 
 public class WebCrawler {
 
     private int MAX_PAGES_TO_VISIT = -1;
-    ExecutorService executor = new ThreadPoolExecutor(6, 12, 5L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
     private String KEYWORD;
     private String BASE_URL;
+    private int NUM_PROCESSORS = Runtime.getRuntime().availableProcessors() > 1 ? Runtime.getRuntime().availableProcessors() / 2 : 1;
+    ExecutorService executor = Executors.newFixedThreadPool(NUM_PROCESSORS);
 
     public WebCrawler(String baseUrl, String keyword, int maxPagesToVisit) {
         BASE_URL = baseUrl;
@@ -32,8 +36,13 @@ public class WebCrawler {
     }
 
     public void init() {
-        executor.execute(new ProcessHTMLPage(new LinkService(BASE_URL), KEYWORD, MAX_PAGES_TO_VISIT));
+        SharedLists.pagesToVisit.add(BASE_URL);
+
+        executor.execute(new ProcessHTMLPage(new LinkService(BASE_URL), KEYWORD, MAX_PAGES_TO_VISIT, executor));
+
+        Utils.waitFinish();
         shutdownExecutor(executor);
+        new AxrengFileWriter().createNewFile(BASE_URL, KEYWORD, SharedLists.urlsFound);
     }
 
     private void shutdownExecutor(ExecutorService executor) {

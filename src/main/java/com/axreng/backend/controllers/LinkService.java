@@ -6,7 +6,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LinkService {
-    private String htmlPage;
     private String baseUrl;
     private Pattern linkPattern = Pattern.compile("<a.*href=\\\"(\\S*)\\\"", Pattern.CASE_INSENSITIVE);
 
@@ -22,7 +21,7 @@ public class LinkService {
         Set<String> allObtainedLinks = new HashSet<>();
         Matcher matcher = linkPattern.matcher(htmlPage);
 
-        // Garantir funcionamento caso a var ENV seja setada com '/' ou sem '/'
+        // Garantir funcionamento caso a var ENV seja setada com ou sem '/'
         if(!baseUrl.endsWith("/")) {
             baseUrl.concat("/");
         }
