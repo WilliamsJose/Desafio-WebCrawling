@@ -11,6 +11,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Set;
 import java.util.concurrent.Executor;
+import java.util.concurrent.RejectedExecutionException;
 
 public class ProcessHTMLPage implements Runnable {
 
@@ -59,7 +60,7 @@ public class ProcessHTMLPage implements Runnable {
             InputStream inputStream = connection.getInputStream();
             String htmlPage = new String(inputStream.readAllBytes());
 
-            if (htmlPage.contains(keyword)) {
+            if (htmlPage.toLowerCase().contains(keyword.toLowerCase())) {
                 SharedLists.urlsFound.add(link);
             }
 
@@ -68,7 +69,11 @@ public class ProcessHTMLPage implements Runnable {
             for (String cLink : links) {
                 if (!SharedLists.visitedPages.contains(cLink)) {
                     SharedLists.pagesToVisit.add(cLink);
-                    executor.execute(() -> handlePage(cLink));
+                    try {
+                        executor.execute(() -> handlePage(cLink));
+                    } catch (RejectedExecutionException ex) {
+                        handlePage(cLink);
+                    }
                 }
             }
         } catch (MalformedURLException e) {

@@ -22,7 +22,7 @@ public class Utils {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            if(SharedLists.pagesToVisit.iterator().hasNext() && Thread.activeCount() > 1) {
+            if(SharedLists.pagesToVisit.iterator().hasNext() && SharedLists.visitedPages.size() > 0) {
                 continue;
             }
             return;
