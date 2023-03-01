@@ -12,6 +12,7 @@ import java.net.URLConnection;
 import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.RejectedExecutionException;
+import java.util.regex.Pattern;
 
 public class ProcessHTMLPage implements Runnable {
 
@@ -60,7 +61,7 @@ public class ProcessHTMLPage implements Runnable {
             InputStream inputStream = connection.getInputStream();
             String htmlPage = new String(inputStream.readAllBytes());
 
-            if (htmlPage.toLowerCase().contains(keyword.toLowerCase())) {
+            if (Pattern.compile(Pattern.quote(keyword), Pattern.CASE_INSENSITIVE).matcher(htmlPage).find()) {
                 SharedLists.urlsFound.add(link);
             }
 
