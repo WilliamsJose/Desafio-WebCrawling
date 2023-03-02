@@ -40,7 +40,7 @@ public class WebCrawler {
 
         executor.execute(new ProcessHTMLPage(new LinkService(BASE_URL), KEYWORD, MAX_PAGES_TO_VISIT, executor));
 
-        Utils.waitFinish();
+        Utils.waitFinish(MAX_PAGES_TO_VISIT);
         shutdownExecutor(executor);
         new AxrengFileWriter().createNewFile(BASE_URL, KEYWORD, SharedLists.urlsFound);
     }

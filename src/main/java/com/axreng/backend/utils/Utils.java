@@ -15,12 +15,15 @@ public class Utils {
         return true;
     }
 
-    public static void waitFinish() {
+    public static void waitFinish(int maxPagesToVisit) {
         while (true) {
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
+            }
+            if(maxPagesToVisit != -1 && SharedLists.visitedPages.size() >= maxPagesToVisit) {
+                return;
             }
             if(SharedLists.pagesToVisit.iterator().hasNext() && SharedLists.visitedPages.size() > 0) {
                 continue;
