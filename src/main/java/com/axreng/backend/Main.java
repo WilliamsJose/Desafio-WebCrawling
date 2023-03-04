@@ -8,7 +8,7 @@ public class Main {
         String BASE_URL = System.getenv("BASE_URL");
         String KEYWORD = System.getenv("KEYWORD");
         String strMaxResults = System.getenv("MAX_RESULTS");
-        int MAX_RESULTS =  strMaxResults != null && !strMaxResults.isBlank() ? Integer.parseInt(strMaxResults) : -1;
+        int MAX_RESULTS = strMaxResults != null && !strMaxResults.isBlank() ? Integer.parseInt(strMaxResults) : -1;
 
         WebCrawler crawler = new WebCrawler(BASE_URL, KEYWORD, MAX_RESULTS);
         crawler.addObserver(new WebCrawlerView());

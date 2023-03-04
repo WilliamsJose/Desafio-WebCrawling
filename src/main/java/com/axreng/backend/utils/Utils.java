@@ -43,7 +43,7 @@ public class Utils {
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                NotifyUtils.notifyError(e.getMessage());
             }
             if(maxPagesToVisit != -1 && SharedLists.visitedPages.size() >= maxPagesToVisit) {
                 return;
