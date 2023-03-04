@@ -1,5 +1,7 @@
 package com.axreng.backend.models;
 
+import com.axreng.backend.utils.NotifyUtils;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,18 +17,21 @@ public class AxrengFileWriter {
 
         List<String> sortedList = new ArrayList<>(urlsFound);
         Collections.sort(sortedList, String.CASE_INSENSITIVE_ORDER);
+        File file = null;
 
         while (true) {
             try {
+                String userHome = System.getProperty("user.home") + File.separator + "Desktop";
                 String filename = counter > 0 ? "results_" + keyword + "_(" + counter + ").txt" : "results_" + keyword + ".txt";
 
-                File file = new File(filename);
+                file = new File(userHome + "/results", filename);
                 if (file.exists()) {
                     counter++;
                     continue;
                 }
 
-                FileWriter newFile = new FileWriter(filename);
+                file.getParentFile().mkdirs();
+                FileWriter newFile = new FileWriter(file.getPath());
 
                 newFile.write("Search starting with base URL '" + baseUrl + "' and keyword '" + keyword + "'" + System.lineSeparator());
 
@@ -41,9 +46,11 @@ public class AxrengFileWriter {
                 newFile.write("Search finished with " + sortedList.size() + " results found");
 
                 newFile.close();
-                System.out.println("Successfully wrote to the file." + System.lineSeparator());
+                System.out.println("Successfully wrote to the file " + file.getPath() + System.lineSeparator());
+            } catch (SecurityException se) {
+                NotifyUtils.notifyError("System not permit creating file directory, please create " + file.getPath() + " directory and run again. " + se.getMessage());
             } catch (IOException e) {
-                System.out.println("An error occurred: " + e.getMessage());
+                NotifyUtils.notifyError("An error occurred: " + e.getMessage());
             }
             return;
         }

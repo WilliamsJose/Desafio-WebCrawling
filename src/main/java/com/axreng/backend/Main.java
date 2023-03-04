@@ -5,10 +5,13 @@ import com.axreng.backend.views.WebCrawlerView;
 
 public class Main {
     public static void main(String[] args) {
-        // TODO validar se tenho ao menos as variáveis BaseUrl e Keyword para iniciar
-        WebCrawler crawler = new WebCrawler("http://hiring.axreng.com/", "four", 100);
+        String BASE_URL = System.getenv("BASE_URL");
+        String KEYWORD = System.getenv("KEYWORD");
+        String strMaxResults = System.getenv("MAX_RESULTS");
+        int MAX_RESULTS =  strMaxResults != null && !strMaxResults.isBlank() ? Integer.parseInt(strMaxResults) : -1;
+
+        WebCrawler crawler = new WebCrawler(BASE_URL, KEYWORD, MAX_RESULTS);
         crawler.addObserver(new WebCrawlerView());
-        // TODO validar entradas do usuario e notificar a view caso incorreto e encerrar programa
         crawler.init();
     }
 }

@@ -6,7 +6,9 @@ import com.axreng.backend.utils.NotifyUtils;
 import com.axreng.backend.utils.SharedLists;
 import com.axreng.backend.utils.Utils;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class WebCrawler {
 
@@ -36,12 +38,16 @@ public class WebCrawler {
     }
 
     public void init() {
+        Utils.validateParameters(BASE_URL, KEYWORD, MAX_PAGES_TO_VISIT);
+
         SharedLists.pagesToVisit.add(BASE_URL);
 
         executor.execute(new ProcessHTMLPage(new LinkService(BASE_URL), KEYWORD, MAX_PAGES_TO_VISIT, executor));
 
         Utils.waitFinish(MAX_PAGES_TO_VISIT);
+
         shutdownExecutor(executor);
+
         new AxrengFileWriter().createNewFile(BASE_URL, KEYWORD, SharedLists.urlsFound);
     }
 

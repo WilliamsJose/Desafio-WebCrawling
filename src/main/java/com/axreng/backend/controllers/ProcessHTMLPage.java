@@ -38,16 +38,13 @@ public class ProcessHTMLPage implements Runnable {
     private void handlePage(String link) {
 
         try {
-
-            System.out.println(Thread.currentThread());
-
             if (!Utils.shouldExecute(SharedLists.visitedPages.size(), SharedLists.pagesToVisit.size(), maxPagesToVisit)) {
                 return;
             }
 
             SharedLists.visitedPages.add(link);
             SharedLists.pagesToVisit.remove(link);
-            NotifyUtils.notifyObservers(link);
+            NotifyUtils.notifyVisitedPage(link);
 
             URL url = new URL(link);
             URLConnection connection = url.openConnection();

@@ -2,8 +2,6 @@ package com.axreng.backend.views;
 
 import com.axreng.backend.models.WebCrawlerObserver;
 
-import java.util.Set;
-
 public class WebCrawlerView implements WebCrawlerObserver {
     @Override
     public void onPageVisited(String url) {
@@ -11,8 +9,9 @@ public class WebCrawlerView implements WebCrawlerObserver {
     }
 
     @Override
-    public void onFinished(Set<String> urlsFound) {
-        urlsFound.forEach(url -> System.out.println("Result found: " + url));
+    public void onError(String str) {
+        System.out.println("An error occurred: " + str);
     }
+
 }
 
