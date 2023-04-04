@@ -9,7 +9,7 @@ O desafio consiste em desenvolver uma aplicação web crawling que navegue em to
 - [x] A KEYWORD deve ser case-insensitive
 - [x] A KEYWORD deve estar em qualquer conteúdo HTML, mesmo que não esteja visível
 - [x] O resultado só deve ser considerado se estiver de acordo com a BASE_URL, qualquer outra URL fora do formato será desconsiderada da busca
-- [x] O OUTPUT deve seguir o padrão: "Result found: URL", seguindo arquivo de exemplo "four.txt"
+- [x] O OUTPUT deve seguir o padrão: "Result found: URL", seguindo arquivo de exemplo "results_four.txt"
 - [x] O OUTPUT deve mostrar apenas uma URL por linha
 - [x] Não instalar novos frameworks
 - [x] A BASE_URL, KEYWORD e MAX_RESULTS devem estar em variáveis de ambiente cada
