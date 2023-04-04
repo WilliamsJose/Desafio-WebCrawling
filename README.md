@@ -1,6 +1,4 @@
-# backend-test
-
-## Desafio Web Crawling
+# Desafio Web Crawling
 O desafio consiste em desenvolver uma aplicação web crawling que navegue em todas as páginas filhas a partir de uma BASE_URL (url inicial), cumprindo os requisitos estabelecidos, principalmente, sem instalar novos frameworks e utilizando apenas código Java sem alterar o **pom.xml** e **Dockerfile**. Exemplo: se a URL base foi definida como **http://exemplo.com/site/**, um link para **http://exemplo.com/site/pagina.html** deve ser visitado; já um link para **http://exemplo.com/blog/** não deve ser visitado. 
 
 ---
