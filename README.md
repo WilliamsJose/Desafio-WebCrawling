@@ -1,20 +1,18 @@
 # axreng-backend-test
 
-> obs: No momento a aplicação produz resultados inconsistentes caso a busca seja limitada, 
-> pois o mesmo utiliza MultiThreads e não define uma ordem de páginas a serem visitadas, ou seja, 
-> se o programa foi limitado em 10 buscas, as primeiras 10 páginas encontradas pelas threads que executaram mais rápido não necessáriamente podem conter o TERMO pesquisado, e nem serão as mesmas em uma segunda execução devido à velocidade de execução de cada Thread.
+## Desafio Web Crawling
+O desafio consiste em desenvolver uma aplicação web crawling que navegue em todas as páginas filhas a partir de uma BASE_URL (url inicial), cumprindo os requisitos estabelecidos, principalmente, sem instalar novos frameworks e utilizando apenas código Java sem alterar o **pom.xml** e **Dockerfile**. Exemplo: se a URL base foi definida como **http://exemplo.com/site/**, um link para **http://exemplo.com/site/pagina.html** deve ser visitado; já um link para **http://exemplo.com/blog/** não deve ser visitado. 
 
 ---
 
 ### Requisitos
 - [x] A KEYWORD deve ser case-insensitive
 - [x] A KEYWORD deve estar em qualquer conteúdo HTML, mesmo que não esteja visível
-- [x] A KEYWORD pode estar na própria URL?
 - [x] O resultado só deve ser considerado se estiver de acordo com a BASE_URL, qualquer outra URL fora do formato será desconsiderada da busca
-- [x] O OUTPUT deve seguir o padrão: "Result found: URL"
+- [x] O OUTPUT deve seguir o padrão: "Result found: URL", seguindo arquivo de exemplo "four.txt"
 - [x] O OUTPUT deve mostrar apenas uma URL por linha
 - [x] Não instalar novos frameworks
-- [x] A BASE_URL, KEYWORD e MAX_RESULTS devem estar em uma variável de ambiente
+- [x] A BASE_URL, KEYWORD e MAX_RESULTS devem estar em variáveis de ambiente cada
 - [x] Acessar URL apenas uma vez
 - [x] A URL seguir o padrão URI especificado em java.net.URI
 - [x] Melhorar performance

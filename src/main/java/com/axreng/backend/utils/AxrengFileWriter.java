@@ -1,4 +1,4 @@
-package com.axreng.backend.models;
+package com.axreng.backend.utils;
 
 import com.axreng.backend.utils.NotifyUtils;
 

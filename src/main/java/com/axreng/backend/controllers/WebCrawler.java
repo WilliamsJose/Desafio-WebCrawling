@@ -1,6 +1,6 @@
 package com.axreng.backend.controllers;
 
-import com.axreng.backend.models.AxrengFileWriter;
+import com.axreng.backend.utils.AxrengFileWriter;
 import com.axreng.backend.models.WebCrawlerObserver;
 import com.axreng.backend.utils.NotifyUtils;
 import com.axreng.backend.utils.SharedLists;
