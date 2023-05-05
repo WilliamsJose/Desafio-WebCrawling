@@ -1,6 +1,8 @@
 # Desafio Web Crawling
 O desafio consiste em desenvolver uma aplicação web crawling que navegue em todas as páginas filhas a partir de uma BASE_URL (url inicial), cumprindo os requisitos estabelecidos, principalmente, sem instalar novos frameworks e utilizando apenas código Java sem alterar o **pom.xml** e **Dockerfile**. Exemplo: se a URL base foi definida como **http://exemplo.com/site/**, um link para **http://exemplo.com/site/pagina.html** deve ser visitado; já um link para **http://exemplo.com/blog/** não deve ser visitado. 
 
+> O exemplo de resultado esperado se encontra no arquivo [results_four.txt](results_four.txt)
+
 ---
 
 ### Requisitos
@@ -22,7 +24,7 @@ O desafio consiste em desenvolver uma aplicação web crawling que navegue em to
 
 `docker build . -t axreng/backend`
 
-*Adicionei mais uma flag **-v** no comando a seguir para especificar onde serão salvos os resultados na máquina host.
+*Use a flag **-v** no comando a seguir para especificar onde serão salvos os resultados na máquina host.
 Devido à isso será necessário alteração do caminho marcado **C:\Users\willi\Desktop\results**:/root/Desktop/results para uma pasta local onde deseja salvar os resultados.*
 
 *Mude também a **MAVEN_HOME** para a variável de ambiente na máquina onde se encontra a pasta .m2 do usuário.*
