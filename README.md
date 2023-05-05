@@ -23,6 +23,8 @@ O desafio consiste em desenvolver uma aplicação web crawling que navegue em to
 `docker build . -t axreng/backend`
 
 *Adicionei mais uma flag **-v** no comando a seguir para especificar onde serão salvos os resultados na máquina host.
-Devido à isso será necessário alteração do caminho marcado **C:\Users\willi\Desktop\results**:/root/Desktop/results para uma pasta local onde deseja salvar os resultados*
+Devido à isso será necessário alteração do caminho marcado **C:\Users\willi\Desktop\results**:/root/Desktop/results para uma pasta local onde deseja salvar os resultados.*
+
+*Mude também a **MAVEN_HOME** para a variável de ambiente na máquina onde se encontra a pasta .m2 do usuário.*
 
 `docker run -v MAVEN_HOME:/root/.m2 -v C:\Users\willi\Desktop\results:/root/Desktop/results -e BASE_URL=http://hiring.axreng.com/ -e KEYWORD=four --rm axreng/backend`
