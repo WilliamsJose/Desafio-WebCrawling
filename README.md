@@ -36,3 +36,5 @@ Entre as variáveis disponíveis no programa estão:
 **BASE_URL** -> site no qual o programa deve iniciar a busca pela paravra chave.
 
 **KEYWORD** -> indica a palavra a ser procurada pelo programa durante a iteração no site.
+
+**MAX_RESULTS** -> indica quando o programa deve parar sua execução após encontrar uma quantidade definida de urls.
