@@ -30,3 +30,9 @@ Devido à isso será necessário alteração do caminho marcado **C:\Users\willi
 *Mude também a **MAVEN_HOME** para a variável de ambiente na máquina onde se encontra a pasta .m2 do usuário.*
 
 `docker run -v MAVEN_HOME:/root/.m2 -v C:\Users\willi\Desktop\results:/root/Desktop/results -e BASE_URL=http://hiring.axreng.com/ -e KEYWORD=four --rm axreng/backend`
+
+Entre as variáveis disponíveis no programa estão:
+
+**BASE_URL** -> site no qual o programa deve iniciar a busca pela paravra chave.
+
+**KEYWORD** -> indica a palavra a ser procurada pelo programa durante a iteração no site.
