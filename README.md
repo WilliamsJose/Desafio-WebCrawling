@@ -3,6 +3,8 @@ O desafio consiste em desenvolver uma aplicação web crawling que navegue em to
 
 > O exemplo de resultado esperado se encontra no arquivo [results_four.txt](results_four.txt)
 
+![preview funcionamento](https://github.com/WilliamsJose/Desafio-WebCrawling/assets/46941170/aa9ec026-ebab-4cff-8802-d8a437a7d8ae)
+
 ---
 
 ### Requisitos
